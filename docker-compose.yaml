@@ -1,0 +1,14 @@
+services:
+    admin:
+      build: ./admin-modules
+      restart: unless-stopped
+      env_file: .env
+      ports:
+          - "8080:8080"
+    
+    extraction:
+      build: ./extraction-modules
+      restart: unless-stopped
+      env_file: .env
+      ports:
+          - "8000:8000"

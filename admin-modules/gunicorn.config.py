@@ -1,0 +1,9 @@
+workers = 4
+worker_class = "uvicorn.workers.UvicornWorker"
+bind = "0.0.0.0:8080"
+timeout = 60
+keepalive = 30
+accesslog = "-"
+errorlog = "-"
+capture_output = True
+loglevel = "info"
