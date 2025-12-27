@@ -5,5 +5,5 @@ timeout = 60
 keepalive = 30
 accesslog = "-"
 errorlog = "-"
-capture_output = True
-loglevel = "info"
+capture_output = False
+loglevel = "debug"
