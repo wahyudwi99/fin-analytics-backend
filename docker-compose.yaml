@@ -19,6 +19,8 @@ services:
       image: nginx:latest
       container_name: production_nginx
       restart: always
+      networks:
+          - app-network
       ports:
           - "80:80"
           - "443:443"
