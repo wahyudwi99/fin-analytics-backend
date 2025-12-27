@@ -1,6 +1,7 @@
 services:
     admin:
       build: ./admin-modules
+      container_name: admin
       restart: unless-stopped
       env_file: .env
       networks:
@@ -8,6 +9,7 @@ services:
     
     extraction:
       build: ./extraction-modules
+      container_name: extraction
       restart: unless-stopped
       env_file: .env
       networks:
