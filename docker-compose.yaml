@@ -3,12 +3,26 @@ services:
       build: ./admin-modules
       restart: unless-stopped
       env_file: .env
-      ports:
-          - "8080:8080"
+      networks:
+          - app-network
     
     extraction:
       build: ./extraction-modules
       restart: unless-stopped
       env_file: .env
+      networks:
+          - app-network
+
+    nginx:
+      image: nginx:latest
+      container_name: production_nginx
+      restart: always
       ports:
-          - "8000:8000"
+          - "80:80"
+          - "443:443"
+      volumes:
+          - ./nginx-modules:/etc/nginx/conf.d:ro
+
+networks:
+  app-network:
+    driver: bridge

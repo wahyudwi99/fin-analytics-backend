@@ -60,6 +60,11 @@ class PaymentData(BaseModel):
 thread_executors = ThreadPoolExecutor(max_workers=int(os.getenv("THREAD_NUMBERS")))
 
 
+@app.get("/test-api")
+async def testing_api():
+    return "Testing API was successful !"
+
+
 @app.post("/create-paypal-payment")
 async def paypal_payment(payment_data: dict,
                    credentials: HTTPAuthorizationCredentials = Depends(HTTPBearer())):
