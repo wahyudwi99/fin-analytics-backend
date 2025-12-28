@@ -26,6 +26,7 @@ services:
           - "443:443"
       volumes:
           - ./nginx-modules:/etc/nginx/conf.d:ro
+          - /etc/letsencrypt:/etc/letsencrypt:ro
 
 networks:
   app-network:
