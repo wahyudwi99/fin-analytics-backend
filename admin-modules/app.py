@@ -1,4 +1,5 @@
 import os
+import time
 import httpx
 import asyncio
 import traceback
@@ -272,8 +273,14 @@ async def get_user_data(request: Request,
         if "email" not in data.keys():
             return RedirectResponse(f"{WEBSITE_URL}/login")
         # Get data from database
+        get_user_start = time.time()
         user_profile_data = await asyncio.to_thread(get_user_profile_data, data["email"])
+        get_user_end = time.time()
+        print(f"get user data time = {get_user_end-get_user_start}")
+        get_payment_start = time.time()
         user_billing_data = await asyncio.to_thread(get_user_payment, data["email"])
+        get_payment_end = time.time()
+        print(f"get payment time = {get_payment_end-get_payment_start}")
         json_user_data = {
             "user_profile_data": user_profile_data["data"],
             "user_billing_data": user_billing_data["data"]

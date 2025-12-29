@@ -115,6 +115,7 @@ def get_user_payment(email: str):
         with open(f"{QUERY_DIR_PATH}/get_count_transaction_log.sql") as openfile:
             query_file = openfile.read()
             query_file = query_file.replace("@payment_created_at", str(payment_created_at_str))
+            query_file = query_file.replace("@email", str(email))
             df_count_transactions = pd.read_sql_query(query_file, connection)
 
     # Construct json response
