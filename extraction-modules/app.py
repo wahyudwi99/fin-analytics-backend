@@ -24,7 +24,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-thread_executors = ThreadPoolExecutor(max_workers=int(os.getenv("THREAD_NUMBERS")))
+thread_executors = ThreadPoolExecutor(
+    max_workers=int(os.getenv("THREAD_NUMBERS")),
+    thread_idle_timeout=60
+)
 
 
 

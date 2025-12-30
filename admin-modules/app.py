@@ -58,7 +58,10 @@ class PaymentData(BaseModel):
     plan: str
 
 
-thread_executors = ThreadPoolExecutor(max_workers=int(os.getenv("THREAD_NUMBERS")))
+thread_executors = ThreadPoolExecutor(
+    max_workers=int(os.getenv("THREAD_NUMBERS")),
+    thread_idle_timeout=60
+)
 
 
 @app.get("/test-api")
