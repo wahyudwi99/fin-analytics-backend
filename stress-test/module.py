@@ -8,17 +8,15 @@ import json
 URL = "https://extraction-endpoint.extplan.io/statement-extractor"
 
 
-def send_request(request_id):
-    with open("./Financial Statement 2.png", "rb") as openfile:
-        file_bytes = openfile.read()
-
+def send_request(file_byte,
+                 request_id):
     additional_data = {
         "email": "wahyudwinugraha99@gmail.com",
         "remaining_balance": 900
     }
 
     files_data = {
-        "file_byte": ("image.png", file_bytes, "application/octet-stream"),
+        "file_byte": ("image.png", file_byte, "application/octet-stream"),
         "additional_data": (None, json.dumps(additional_data), "application/json")
     }
 
@@ -49,7 +47,8 @@ def send_request(request_id):
             "error_msg": str(e)
         }
 
-def run_benchmark(total_requests: int,
+def run_benchmark(file_byte: bytes,
+                  total_requests: int,
                   concurrency_level: int):
     print(f"🚀 Start Stress Test: {total_requests} requests...")
     print(f"🔥 Concurrency: {concurrency_level} threads\n")
@@ -57,7 +56,7 @@ def run_benchmark(total_requests: int,
     overall_start = time.perf_counter()
     
     with ThreadPoolExecutor(max_workers=concurrency_level) as executor:
-        results = list(executor.map(send_request, range(total_requests)))
+        results = list(executor.map(send_request, file_byte, range(total_requests)))
     
     overall_end = time.perf_counter()
     
