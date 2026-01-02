@@ -15,6 +15,14 @@ services:
       networks:
           - app-network
 
+    stress-test:
+      build: ./stress-test
+      container_name: stress-test
+      restart: unless-stopped
+      env_file: .env
+      networks:
+          - app-network
+
     nginx:
       image: nginx:latest
       container_name: production_nginx
