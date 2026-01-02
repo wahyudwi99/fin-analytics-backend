@@ -59,8 +59,7 @@ class PaymentData(BaseModel):
 
 
 thread_executors = ThreadPoolExecutor(
-    max_workers=int(os.getenv("THREAD_NUMBERS")),
-    thread_idle_timeout=60
+    max_workers=int(os.getenv("THREAD_NUMBERS"))
 )
 
 
