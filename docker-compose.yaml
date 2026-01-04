@@ -19,6 +19,9 @@ services:
       image: nginx:latest
       container_name: production_nginx
       restart: always
+      environment:
+          - SUBDOMAIN_ADMIN: ${SUBDOMAIN_ADMIN}
+          - SUBDOMAIN_EXTRACTION: ${SUBDOMAIN_EXTRACTION}
       networks:
           - app-network
       ports:
