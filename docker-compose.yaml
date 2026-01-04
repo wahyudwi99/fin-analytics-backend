@@ -28,7 +28,7 @@ services:
           - "80:80"
           - "443:443"
       volumes:
-          - ./nginx-modules:/etc/nginx/conf.d:ro
+          - ./nginx-modules:/etc/nginx/templates
           - /etc/letsencrypt:/etc/letsencrypt:ro
 
 networks:
